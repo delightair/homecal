@@ -50,28 +50,6 @@ class Gcalendar:
                 redirect(oauth_consent_url)
                 print("oauth consent url is :", oauth_consent_url)
                 #response = input("Press any key when authised")
-
-                '''
-                After user consent is provided, google provides state & code
-                using which we have to get User credentials
-                Steps:
-                - Get state and code from query
-                - Call on_auth_callback function using state and code
-                - You can get users credentials using get_user_credentials function
-                (You can store and reuse those credentials for calendar actions)
-                '''
-                state = request.args.get('state')
-                code = request.args.get('code')
-                client.on_auth_callback(state, code)
-                user_google_auth_credentials = client.get_user_credentials()
-                print('User Google Auth Creds', user_google_auth_credentials)
-                resp = make_response(render_template('auth_success.html'))
-                resp.set_cookie('is_calendar_connected', 'true')
-
-                # Note: Storing creds in cookies for demonstration purpose only
-                # You should keep it in some database
-                resp.set_cookie('user_google_auth_credentials',
-                                json.dumps(user_google_auth_credentials))
         return None
 
 
