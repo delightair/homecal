@@ -51,6 +51,32 @@ def index():
     return render_template('index.html', date=today_date(), weather=get_weather, events=get_events)
 
 
+@ app.route('/api/google/calendar/callback')
+def google_calendar_callback():
+    '''
+    After user consent is provided, google provides state & code
+    using which we have to get User credentials
+    Steps:
+    - Get state and code from query
+    - Call on_auth_callback function using state and code
+    - You can get users credentials using get_user_credentials function
+    (You can store and reuse those credentials for calendar actions)
+    '''
+    state = request.args.get('state')
+    code = request.args.get('code')
+    client.on_auth_callback(state, code)
+    user_google_auth_credentials = client.get_user_credentials()
+    print('User Google Auth Creds', user_google_auth_credentials)
+    resp = make_response(render_template('auth_success.html'))
+    resp.set_cookie('is_calendar_connected', 'true')
+
+    # Note: Storing creds in cookies for demonstration purpose only
+    # You should keep it in some database
+    resp.set_cookie('user_google_auth_credentials',
+                    json.dumps(user_google_auth_credentials))
+    return resp
+
+
 if __name__ == '__main__':
     #app.run(debug=True, host='127.0.0.1', port=8000)
     app.run(host='0.0.0.0')
