@@ -12,8 +12,9 @@ from oauth import Oauth
 
 
 class Gcalendar:
-    def __init__(self):
+    def __init__(self, client):
         self.events = []
+        self.client = client
 
     def gcal_connect(self, cal_key):
         """Shows basic usage of the Google Calendar API.
