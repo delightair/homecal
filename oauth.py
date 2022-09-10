@@ -98,6 +98,7 @@ class Oauth(object):
         print('### self.credentials_path :', self.credentials_path),
         print('### self.scopes           :', self.scopes)
         print('### state                 :', state)
+        print('### code                  :', code)
         print('\n')
 
         flow = oauthflow.Flow.from_client_secrets_file(
