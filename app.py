@@ -76,7 +76,9 @@ def google_calendar_callback():
     '''
     print("in /api/google/calendar/callback")
     state = request.args.get('state')
+    print('#### state:', state)
     code = request.args.get('code')
+    print('#### code :', code)
     client.on_auth_callback(state, code)
     user_google_auth_credentials = client.get_user_credentials()
     print('User Google Auth Creds', user_google_auth_credentials)
