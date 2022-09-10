@@ -9,7 +9,7 @@ from oauth import Oauth
 OAUTH_API_SCOPES = [
     'https://www.googleapis.com/auth/calendar.readonly']
 OAUTH_CREDENTIALS_PATH = './credentials.json'
-APP_BASE_URL = 'http://cal.the-etheridges.com'
+APP_BASE_URL = 'http://cal.the-etheridges.com:5000'
 
 client = Oauth(
     credentials_path=OAUTH_CREDENTIALS_PATH,
