@@ -4,10 +4,6 @@ from google_auth_oauthlib import flow as oauthflow
 class Oauth(object):
 
     def __init__(self, credentials_path, scopes):
-		print('# Class Oauth, def __init__')
-		print('## credentials_path:', credentials_path)
-		print('## scopes          :', scopes)
-		print('\n')
         '''Calapi Oauth Constructor
 
         Parameters:
@@ -33,6 +29,10 @@ class Oauth(object):
         '''
         self.credentials_path = credentials_path
         self.scopes = scopes
+        print('# Class Oauth, def __init__')
+        print('## credentials_path:', credentials_path)
+        print('## scopes          :', scopes)
+        print('\n')
 
     def get_user_credentials(self):
         '''Returns user's credentials with
