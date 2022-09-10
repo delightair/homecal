@@ -15,6 +15,9 @@ class Gcalendar:
     def __init__(self, client):
         self.events = []
         self.client = client
+        print('# Class gCalendar, def __init__')
+        print('## client:', client)
+        print('\n')
 
     def gcal_connect(self, cal_key):
         """Shows basic usage of the Google Calendar API.
