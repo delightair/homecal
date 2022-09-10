@@ -46,6 +46,7 @@ class Gcalendar:
                     APP_BASE_URL)
                 oauth_consent_url = client.get_authorization_url(
                     redirect_uri=callback_url)
+                redirect(oauth_consent_url)
                 print("oauth consent url is :", oauth_consent_url)
                 response = input("Press any key when authised")
 
