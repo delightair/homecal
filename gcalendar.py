@@ -23,6 +23,7 @@ class Gcalendar:
         OAUTH_API_SCOPES = [
             'https://www.googleapis.com/auth/calendar.readonly']
         OAUTH_CREDENTIALS_PATH = '.credentials.json'
+        APP_BASE_URL = 'http://cal.the-etheridges.com'
 
         client = Oauth(
             credentials_path=OAUTH_CREDENTIALS_PATH,
@@ -42,7 +43,7 @@ class Gcalendar:
                 creds.refresh(Request())
             else:
                 callback_url = '{}/api/google/calendar/callback'.format(
-                    settings.APP_BASE_URL)
+                    APP_BASE_URL)
                 oauth_consent_url = client.get_authorization_url(
                     redirect_uri=callback_url)
                 print("oauth consent url is :", oauth_consent_url)
