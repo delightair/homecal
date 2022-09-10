@@ -94,9 +94,11 @@ class Oauth(object):
         session_credentials = client.on_auth_callback(state, code)
         '''
 
+        print('# Class Oauth, def on_auth_callback')
         print('### self.credentials_path :', self.credentials_path),
         print('### self.scopes           :', self.scopes)
         print('### state                 :', state)
+        print('\n')
 
         flow = oauthflow.Flow.from_client_secrets_file(
             self.credentials_path,

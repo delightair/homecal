@@ -82,14 +82,17 @@ def google_calendar_callback():
     - You can get users credentials using get_user_credentials function
     (You can store and reuse those credentials for calendar actions)
     '''
+    print('# app.py def google_calendar_callback')
     print("in /api/google/calendar/callback")
     state = request.args.get('state')
-    print('#### state:', state)
+    print('## state:', state)
     code = request.args.get('code')
-    print('#### code :', code)
+    print('## code :', code)
+    print('\n')
     client.on_auth_callback(state, code)
     user_google_auth_credentials = client.get_user_credentials()
     print('User Google Auth Creds', user_google_auth_credentials)
+    print('\n')
     resp = make_response(render_template('auth_success.html'))
     resp.set_cookie('is_calendar_connected', 'true')
 
