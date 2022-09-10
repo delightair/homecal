@@ -25,13 +25,13 @@ my_cal = Gcalendar()
 get_events = tuple()
 get_events1 = tuple()
 get_events2 = tuple()
-'''print(f'### get_events intial len = {len(get_events)}')
+print(f'### get_events intial len = {len(get_events)}')
 for cal_key_item in cal_key:
     get_events1 = my_cal.gcal_connect(cal_key_item)
     if type(get_events1) != type('str'):
         get_events2 = get_events2 + get_events1
     get_events1 = tuple()
-'''
+
 event_list = []
 for item in get_events2:
     if item not in event_list:

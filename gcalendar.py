@@ -50,7 +50,7 @@ class Gcalendar:
                 redirect(oauth_consent_url)
                 print("oauth consent url is :", oauth_consent_url)
                 #response = input("Press any key when authised")
-        return None
+        return tuple()
 
 
 '''
