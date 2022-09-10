@@ -11,11 +11,12 @@ OAUTH_API_SCOPES = [
 OAUTH_CREDENTIALS_PATH = './credentials.json'
 APP_BASE_URL = 'http://cal.the-etheridges.com:5000'
 
+'''
 client = Oauth(
     credentials_path=OAUTH_CREDENTIALS_PATH,
     scopes=OAUTH_API_SCOPES
 )
-
+'''
 # Weather
 my_weather = Weather()
 get_weather = my_weather.get_data(weather_key, city, state)
