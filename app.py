@@ -3,7 +3,18 @@ from keys import weather_key, city, state, cal_key
 from gcalendar import Gcalendar
 from weather import Weather
 from datetime import date
+from oauth import Oauth
 
+
+OAUTH_API_SCOPES = [
+    'https://www.googleapis.com/auth/calendar.readonly']
+OAUTH_CREDENTIALS_PATH = './credentials.json'
+APP_BASE_URL = 'http://cal.the-etheridges.com'
+
+client = Oauth(
+    credentials_path=OAUTH_CREDENTIALS_PATH,
+    scopes=OAUTH_API_SCOPES
+)
 
 # Weather
 my_weather = Weather()
@@ -48,6 +59,7 @@ app = Flask(__name__)
 
 @ app.route('/')
 def index():
+
     return render_template('index.html', date=today_date(), weather=get_weather, events=get_events)
 
 
