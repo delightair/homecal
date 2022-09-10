@@ -22,7 +22,7 @@ class Gcalendar:
         """
 
         # If modifying these scopes, delete the file token.pickle.
-'''        OAUTH_API_SCOPES = [
+        '''OAUTH_API_SCOPES = [
             'https://www.googleapis.com/auth/calendar.readonly']
         OAUTH_CREDENTIALS_PATH = './credentials.json'
         APP_BASE_URL = 'http://cal.the-etheridges.com:5000'
@@ -30,28 +30,28 @@ class Gcalendar:
         client = Oauth(
             credentials_path=OAUTH_CREDENTIALS_PATH,
             scopes=OAUTH_API_SCOPES
-        )
-'''
-  creds = None
-   # The file token.pickle stores the user's access and refresh tokens, and is
-   # created automatically when the authorization flow completes for the first
-   # time.
-   if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
-            creds = pickle.load(token)
-            # If there are no (valid) credentials available, let the user log in.
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            callback_url = '{}/api/google/calendar/callback'.format(
-                APP_BASE_URL)
-            oauth_consent_url = client.get_authorization_url(
-                redirect_uri=callback_url)
-            redirect(oauth_consent_url)
-            print("oauth consent url is :", oauth_consent_url)
-            #response = input("Press any key when authised")
-    return tuple()
+        )'''
+
+        creds = None
+        # The file token.pickle stores the user's access and refresh tokens, and is
+        # created automatically when the authorization flow completes for the first
+        # time.
+        if os.path.exists('token.pickle'):
+            with open('token.pickle', 'rb') as token:
+                creds = pickle.load(token)
+                # If there are no (valid) credentials available, let the user log in.
+            if not creds or not creds.valid:
+                if creds and creds.expired and creds.refresh_token:
+                    creds.refresh(Request())
+                else:
+                    callback_url = '{}/api/google/calendar/callback'.format(
+                        APP_BASE_URL)
+                    oauth_consent_url = client.get_authorization_url(
+                        redirect_uri=callback_url)
+                    redirect(oauth_consent_url)
+                    print("oauth consent url is :", oauth_consent_url)
+                    #response = input("Press any key when authised")
+            return tuple()
 
 
 '''
