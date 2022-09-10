@@ -83,7 +83,6 @@ def google_calendar_callback():
     (You can store and reuse those credentials for calendar actions)
     '''
     print('# app.py def google_calendar_callback')
-    print("in /api/google/calendar/callback")
     state = request.args.get('state')
     print('## state:', state)
     code = request.args.get('code')
