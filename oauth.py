@@ -105,8 +105,18 @@ class Oauth(object):
             scopes=self.scopes,
             state=state
         )
+
+        print('# Class Oauth, def on_auth_callback')
+        print('### flow :', flow)
+
         flow.redirect_uri = self.redirect_uri
+        print('### flow.redirect_uri :', flow.redirect_uri)
         flow.fetch_token(code=code)
+        print('### token        :', flow.credentials.token)
+        print('### token_uri    :', flow.credentials.token_uri)
+        print('### client_id    :', flow.credentials.client_id)
+        print('### client_secret:', flow.credentials.client_secret)
+        print('### scopes       :', flow.credentials.scopes)
         self.__session_credentials = {
             'token': flow.credentials.token,
             'token_uri': flow.credentials.token_uri,
