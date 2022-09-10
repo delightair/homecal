@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Home Automation App</title>
+
+  <meta name="description" content="An app that tracks the weather, calendar events, todo items, and grocery list." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--Custom CSS-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/app.css') }}" />
+  <!--Bootstrap CSS-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+  <!--Font Awesome Icons-->
+  <script src="https://kit.fontawesome.com/75bde6854e.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- bootstrap social css-->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" />
+  <!--animation css-->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+</head>
+
+<body style="background-color: lightgray">
+  <!--Date Section-->
+  <!--<section id="weather" class="col-5">
+    <div class="container">
+      <div class="row">
+        <div id="center-weather" class="col">
+          <div class="container">
+            <div class="row"> -->
+  <h1 class="col wow fadeInDown" data-wow-delay="0.2s">{{ date }}</h1>
+  <!--</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <section id="events">
+    <table>
+      <colgroup>
+        <col span="1" style="width:5%;text-align: center">
+        <col span="1" style="width:10%;text-align: center">
+        <col span="5" style="width:17%;text-align: center">
+      </colgroup>
+      <tr>
+        <th>Date</th>
+        <th>Weather</th>
+        <th>Family</th>
+        <th>Clarissa</th>
+        <th>Gavin</th>
+        <th>Kieran</th>
+        <th>Liam</th>
+      </tr>
+
+      {% for weatherperday in weather %}
+      {% set dayfromtoday = loop.index0 %}
+      <tr>
+        <td>
+          <h5> {{weatherperday['day']}} </h5>
+        </td>
+        <td>
+          <img src={{weatherperday['icon']}} alt={{weatherperday['weather']}}>
+          <h2>{{weatherperday['temp']}}<span>&#176;</span>C</h2>
+          <p> &#9730; {{weatherperday['precipprob']}}% &#9788; {{weatherperday['uvi']}}</p>
+        </td>
+
+        {% for calitem in ['gavin@the-etheridges.com',
+        'the-etheridges.com_fs8routgl0q6i949kund9neh2s@group.calendar.google.com','the-etheridges.com_cmmuad2atnj9hoovokslmficus@group.calendar.google.com','c_4qem81g8qbb972cnep7k9ualas@group.calendar.google.com','c_61060kit0ac5vekmllbjdgsqb8@group.calendar.google.com']
+        %}
+        <td>
+
+          {% for event in events if event['cal'] == calitem %}
+          {% if (((event['startsindays'] <= dayfromtoday) and (event['endsindays']> dayfromtoday)) or
+            (event['startsindays'] == dayfromtoday)) %}
+            <!-- Either a multiday event including the current day or an event for the current day -->
+            {% if event['starttime'] != event['endtime'] %}
+            <!-- Not and all day event -->
+            <div class="col-md-13 card-container">
+              <div class="card mb-13" style="max-width: 540px">
+                <div class="row no-gutters">
+                  <div class="col-md-13">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ event['summary'] }}</h5>
+                      <p class="card-text">{{event['starttime'] }} to {{event['endtime']}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% else %}
+            <!-- All day event -->
+            <div class="col-md-13 card-container">
+              <div class="card mb-13" style="max-width: 540px">
+                <div class="row no-gutters">
+                  <div class="col-md-13">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ event['summary'] }}</h5>
+                      <p class="card-text">All day</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endif %}
+
+
+
+            {% endif %}
+            {% endfor %}
+        </td>
+        {% endfor %}
+      </tr>
+
+      {% endfor %}
+
+
+      <!--<td>
+      <div class="row">
+        {% for event in events %}
+        <div class="col-md-8 card-container">
+          <div class="card mb-8" style="max-width: 540px">
+            <div class="row no-gutters">
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ event['summary'] }}</h5>
+                  <p class="card-text">{{ event['start'] }}</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                                              <img src="..." class="card-img" alt="...">
+                                          </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </td> -->
+
+    </table>
+  </section>
+
+
+  <!--
+  <div class="row align-items-center">
+    <section id="weather" class="col-1">
+      <div class="container">
+        <div class="row">
+          <div id="center-weather" class="col">
+            <div class="container">
+              <div class="row">
+                <h1 class="col wow fadeInDown" data-wow-delay="0.2s">{{ date }}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <section id="weather" class="col-1">
+      <div class="container">
+        <div class="row">
+          <div id="center-weather" class="col">
+            <div class="container">
+              <div class="row">
+                <i id="main-weather" class="col fas fa-sun wow fadeIn" data-wow-delay="0.4s"></i>
+              </div>
+              <div class="row">
+                <p class="col">
+                  <i class="today-weather fas fa-tint wow fadeIn" data-wow-delay="0.4s"></i><span class="wow fadeIn"
+                    data-wow-delay="0.4s">60%</span>
+                </p>
+                <p id="wind" class="col">
+                  <i class="today-weather fas fa-wind wow fadeIn" data-wow-delay="0.4s"></i><span class="wow fadeIn"
+                    data-wow-delay="0.4s">12mph</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </section>
+
+  <section id="events" class="col-1">
+    <div class="container wow fadeIn" data-wow-delay="0.4s">
+      <div class="row">
+        {% for event in events %}
+        <div class="col-md-3 card-container">
+          <div class="card mb-3" style="max-width: 540px">
+            <div class="row no-gutters">
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ event['summary'] }}</h5>
+                  <p class="card-text">{{ event['start'] }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  </div>
+  <div class="col">
+    <p>
+      <i class="upcoming-weather fas fa-cloud-sun wow fadeIn" data-wow-delay="0.4s"></i>
+    </p>
+    <p>
+      <i class="upcoming-weather fas fa-cloud-sun-rain wow fadeIn" data-wow-delay="0.4s"></i><span class="wow fadeIn"
+        data-wow-delay="0.4s">Saturday</span>
+    </p>
+    <p>
+      <i class="upcoming-weather fas fa-cloud-showers-heavy wow fadeIn" data-wow-delay="0.4s"></i><span
+        class="wow fadeIn" data-wow-delay="0.4s">Sunday</span>
+    </p>
+
+
+  </div>
+-->
+  <!--Bootstrap-->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script>
+    new WOW().init();
+  </script>
+  <!--Custom JavaScript-->
+  <script src="{{ url_for('static', filename='app.js') }}" async defer></script>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap");
+
+/********************************
+Main Styles
+********************************/
+:root {
+  --orange-red: #f45d48;
+  --orange-red-blur: rgba(244, 93, 72, 0.5);
+  --off-white: #fffffe;
+  --green-blue: #078080;
+  --black: #232323;
+  --light-black: rgba(34, 37, 37, 0.5);
+  --tan: #f8f5f2;
+}
+
+  {
+  font-family: "Open Sans", sans-serif;
+}
+
+html,
+#body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--black);
+  height: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 1rem;
+  width: 100%;
+  margin-top: 1pt;
+  margin-right: 1pt;
+  margin-left: 1pt;
+  margin-bottom: 1pt;
+}
+
+th {
+  text-align: center;
+}
+
+tr {
+  border-bottom: 1pt solid lightskyblue;
+}
+
+
+/********************************
+Header Styles
+********************************/
+
+#header h1 {
+  font-size: 50px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--black);
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+/********************************
+Weather Styles
+********************************/
+
+#weather i {
+  color: var(--green-blue);
+}
+
+#weather #wind {
+  padding-left: 0px;
+}
+
+#weather p {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+#main-weather {
+  font-size: 64px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.today-weather {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.upcoming-weather {
+  font-size: 36px;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+/********************************
+Events Styles
+********************************/
+#events .card-container {
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+#events .card {
+  box-shadow: 6px 6px 16px rgba(195, 195, 192, 0.5),
+    -3px -3px 16px rgba(195, 195, 192, 0.5);
+}
+
+#events h5 {
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+#events p {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--light-black);
+}
+
+#events .card {
+  background-color: lightskyblue;
+}
+
+
+
+/********************************
+Modal Styles
+********************************/
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  background-color: var(--tan);
+}
+
+.modal h5,
+.modal label {
+  color: var(--black);
+
+  .modal-header .header-title {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .modal-body input:focus,
+  .modal-body .form-control:focus {
+    border-color: var(--orange-red) !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px var(--orange-red) !important;
+    outline: 0 none !important;
+  }
+
+  .modal h5,
+  .modal label {
+    color: var(--black);
+
+  }
+
+  .modal .modal-body .form-btns {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .modal .modal-body .btn {
+    background-color: var(--orange-red);
+    color: var(--off-white);
+    border-color: var(--orange-red);
+  }
+
+  .modal .modal-body .btn:active {
+    background-color: var(--orange-red);
+    filter: brightness(75%);
+  }
+
+  .modal .modal-body .btn-submit {
+    background-color: var(--orange-red);
+    color: var(--off-white);
+    border-color: var(--orange-red);
+  }
+
+  .modal .modal-body .btn-submit:active {
+    background-color: var(--orange-red);
+    filter: brightness(75%);
+  }

@@ -1,0 +1,19 @@
+# Files you don't want sent to GitHub 
+# (Files you don't want or don't need to be made public)
+
+.vscode
+
+__pycache__/
+
+# Don't save the env folder - if using python virtual env
+env
+
+# Keys - don't save your api keys to GitHub!!
+keys.py
+
+# Google calendar credentials
+credentials.json
+token.pickle
+
+# DS_STORE
+.DS_Store
