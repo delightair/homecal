@@ -4,29 +4,6 @@ from google_auth_oauthlib import flow as oauthflow
 class Oauth(object):
 
     def __init__(self, credentials_path, scopes):
-        '''Calapi Oauth Constructor
-
-        Parameters:
-        credentials_path (string): local directory path to google's oauth
-            credentials file
-        scopes (list): List of Oauth scopes for which user's consent is required
-
-        Returns:
-        Oauth Instance
-
-        Example usage :
-        client = Oauth(
-            credentials_path='./credentials.json',
-            scopes=[
-                'openid',
-                'https://www.googleapis.com/auth/userinfo.email',
-                'https://www.googleapis.com/auth/userinfo.profile',
-                'https://www.googleapis.com/auth/calendar.events',
-                'https://www.googleapis.com/auth/calendar',
-                'https://www.googleapis.com/auth/calendar.readonly'
-            ]
-        )
-        '''
         self.credentials_path = credentials_path
         self.scopes = scopes
         print('# Class Oauth, def __init__')
