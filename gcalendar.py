@@ -49,7 +49,7 @@ class Gcalendar:
                     redirect_uri=callback_url)
                 redirect(oauth_consent_url)
                 print("oauth consent url is :", oauth_consent_url)
-                response = input("Press any key when authised")
+                #response = input("Press any key when authised")
 
                 '''
                 After user consent is provided, google provides state & code
