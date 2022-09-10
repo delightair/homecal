@@ -150,38 +150,38 @@ class Gcalendar:
 
 
 def set_data(self, events, cal_key):
-     now = datetime.datetime.now()  # .isoformat()  # + 'Z'  # 'Z' indicates UTC time
-      today = datetime.datetime(now.year, now.month, now.day)
-       for event in events:
-            start1 = event['start'].get('dateTime', event['start'].get('date'))
-            if len(start1) == 10:
-                start1 = start1 + 'T00:00:00'
-            start = datetime.datetime.strptime(start1[0:10], '%Y-%m-%d')
-            end1 = event['end'].get('dateTime', event['end'].get('date'))
-            if len(end1) == 10:
-                end1 = end1 + 'T00:00:00'
-            end = datetime.datetime.strptime(end1[0:10], '%Y-%m-%d')
-            startdiff = start - today
-            enddiff = end - today
+    now = datetime.datetime.now()  # .isoformat()  # + 'Z'  # 'Z' indicates UTC time
+    today = datetime.datetime(now.year, now.month, now.day)
+    for event in events:
+        start1 = event['start'].get('dateTime', event['start'].get('date'))
+        if len(start1) == 10:
+            start1 = start1 + 'T00:00:00'
+        start = datetime.datetime.strptime(start1[0:10], '%Y-%m-%d')
+        end1 = event['end'].get('dateTime', event['end'].get('date'))
+        if len(end1) == 10:
+            end1 = end1 + 'T00:00:00'
+        end = datetime.datetime.strptime(end1[0:10], '%Y-%m-%d')
+        startdiff = start - today
+        enddiff = end - today
 
-            self.events.append(
-                dict(
-                    summary=event['summary'],
-                    start=event['start'].get(
-                        'dateTime', event['start'].get('date')),
-                    starttime=datetime.datetime.strptime(
-                        start1[11:19], '%H:%M:%S').strftime('%H:%M'),
-                    end=event['end'].get(
-                        'dateTime', event['end'].get('date')),
-                    endtime=datetime.datetime.strptime(
-                        end1[11:19], '%H:%M:%S').strftime('%H:%M'),
-                    location=event['location'] if 'location' in event.keys(
-                    ) else '',
-                    startsindays=startdiff.days,
-                    endsindays=enddiff.days,
-                    cal=cal_key
-                )
+        self.events.append(
+            dict(
+                summary=event['summary'],
+                start=event['start'].get(
+                    'dateTime', event['start'].get('date')),
+                starttime=datetime.datetime.strptime(
+                    start1[11:19], '%H:%M:%S').strftime('%H:%M'),
+                end=event['end'].get(
+                    'dateTime', event['end'].get('date')),
+                endtime=datetime.datetime.strptime(
+                    end1[11:19], '%H:%M:%S').strftime('%H:%M'),
+                location=event['location'] if 'location' in event.keys(
+                ) else '',
+                startsindays=startdiff.days,
+                endsindays=enddiff.days,
+                cal=cal_key
             )
+        )
         return tuple(self.events)
 
 
