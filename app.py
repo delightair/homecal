@@ -17,6 +17,13 @@ client = Oauth(
     scopes=OAUTH_API_SCOPES
 )
 
+callback_url = '{}/api/google/calendar/callback'.format(
+    APP_BASE_URL)
+oauth_consent_url = client.get_authorization_url(
+    redirect_uri=callback_url)
+redirect(oauth_consent_url)
+print("oauth consent url is :", oauth_consent_url)
+
 # Weather
 my_weather = Weather()
 get_weather = my_weather.get_data(weather_key, city, state)
