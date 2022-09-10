@@ -22,7 +22,7 @@ class Gcalendar:
         # If modifying these scopes, delete the file token.pickle.
         OAUTH_API_SCOPES = [
             'https://www.googleapis.com/auth/calendar.readonly']
-        OAUTH_CREDENTIALS_PATH = '.credentials.json'
+        OAUTH_CREDENTIALS_PATH = './credentials.json'
         APP_BASE_URL = 'http://cal.the-etheridges.com'
 
         client = Oauth(
