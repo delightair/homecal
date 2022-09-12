@@ -80,9 +80,12 @@ def connect_google_calendar():
     - Redirect with callback url 
     (Callback APP api url Eg. https://example.com/api/google/calendar/callback )
     '''
+    print('## app.py  in connect_google_calendar')
     callback_url = '{}/api/google/calendar/callback'.format(
         settings.APP_BASE_URL)
+    print('### callback_url      :', callback_url)
     oauth_consent_url = client.get_authorization_url(redirect_uri=callback_url)
+    print('### oauth_consent_url :', oauth_consent_url)
     return redirect(oauth_consent_url)
 
 
