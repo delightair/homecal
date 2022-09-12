@@ -23,7 +23,7 @@ function setCookie(cname, cvalue, exMins) {
  * Connect Google Account Handler
  */
 function connectGoogleCalendar(event) {
-	const url = `${baseUrl}/api/google/calendar/connect`;
+	const url = `http://cal.the-etheridges.com:5000/api/google/calendar/connect`;
 	openWindow(url, 'Authorize Zoom', 600, 700, 1);
 }
 
@@ -33,58 +33,6 @@ function connectGoogleCalendar(event) {
 function disconnectGoogleCalendar(event) {
 	setCookie('is_calendar_connected', '', 0);
 	window.location.reload();
-}
-
-/**
- * Create Event
- */
-function createEvent(event) {
-	$.ajax('/api/google/calendar/events/insert', {
-		type: 'GET',
-		success: function (data, status, xhr) {
-			window.createdEvent = data;
-			$('#createEvent').hide();
-			$('#eventCreated').show();
-			$('#getEventSection').show();
-			$('#deleteEventSection').show();
-		},
-		error: function (jqXhr, textStatus, errorMessage) {
-			alert('err')
-		}
-	});
-}
-
-/**
- * Get Event
- */
-function getCreatedEvent(event) {
-	$.ajax(`/api/google/calendar/events/get?eventId=${window.createdEvent.id}`, {
-		type: 'GET',
-		success: function (data, status, xhr) {
-			document.getElementById("createdEventInfo").textContent = JSON.stringify(data, undefined, 2);
-		},
-		error: function (jqXhr, textStatus, errorMessage) {
-			alert('err')
-		}
-	});
-}
-
-/**
- * Delete Event
- */
-function deleteCreatedEvent(event) {
-	$.ajax(`/api/google/calendar/events/delete?eventId=${window.createdEvent.id}`, {
-		type: 'GET',
-		success: function (data, status, xhr) {
-			$('#createEvent').show();
-			$('#eventCreated').hide();
-			$('#getEventSection').hide();
-			$('#deleteEventSection').hide();
-		},
-		error: function (jqXhr, textStatus, errorMessage) {
-			alert('err')
-		}
-	});
 }
 
 function init() {
