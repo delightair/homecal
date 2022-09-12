@@ -38,9 +38,6 @@ function disconnectGoogleCalendar(event) {
 function init() {
 	$('#connectGoogleCalendar').click(connectGoogleCalendar);
 	$('#disconnectGoogleCalendar').click(disconnectGoogleCalendar);
-	$('#createEvent').click(createEvent);
-	$('#getCreatedEvent').click(getCreatedEvent);
-	$('#deleteCreatedEvent').click(deleteCreatedEvent);
 }
 
 init();
