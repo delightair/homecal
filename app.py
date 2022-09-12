@@ -71,6 +71,21 @@ def index():
     return render_template('index.html', date=today_date(), weather=get_weather, events=get_events)
 
 
+@ app.route('/api/google/calendar/connect')
+def connect_google_calendar():
+    '''
+    First step is to get users consent for using calendar APIs
+    Steps:
+    - Get Consent Url 
+    - Redirect with callback url 
+    (Callback APP api url Eg. https://example.com/api/google/calendar/callback )
+    '''
+    callback_url = '{}/api/google/calendar/callback'.format(
+        settings.APP_BASE_URL)
+    oauth_consent_url = client.get_authorization_url(redirect_uri=callback_url)
+    return redirect(oauth_consent_url)
+
+
 @ app.route('/api/google/calendar/callback')
 def google_calendar_callback():
     '''
