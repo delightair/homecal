@@ -39,9 +39,15 @@ class Gcalendar:
         # The file token.pickle stores the user's access and refresh tokens, and is
         # created automatically when the authorization flow completes for the first
         # time.
+        print('\n')
+        print('# in gcalendar.py gcal_connect)
+        print('## about to check for token.pickle file')
+        print('\n')
         if os.path.exists('token.pickle'):
             with open('token.pickle', 'rb') as token:
                 creds = pickle.load(token)
+            print('## token.pickle found')
+            print('## creds :',creds)
         # If there are no (valid) credentials available, let the user log in.
         # if not creds or not creds.valid:
         #    creds.refresh(Request())
