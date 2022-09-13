@@ -100,7 +100,6 @@ class Oauth(object):
             'token_uri': flow.credentials.token_uri,
             'client_id': flow.credentials.client_id,
             'client_secret': flow.credentials.client_secret,
-            'scopes': flow.credentials.scopes,
-            'creds': flow.credentials
+            'scopes': flow.credentials.scopes
         }
         return self.__session_credentials
