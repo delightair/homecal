@@ -44,29 +44,29 @@ class Gcalendar:
                 creds = pickle.load(token)
         # If there are no (valid) credentials available, let the user log in.
         if not creds or not creds.valid:
-            creds.refresh(Request()
+            creds.refresh(Request())
 
         if creds != None:
-            service=build('calendar', 'v3', credentials=creds)
+            service = build('calendar', 'v3', credentials=creds)
 
             # Call the Calendar API
-            now=datetime.datetime.now()  # .isoformat()  # + 'Z'  # 'Z' indicates UTC time
-            today=datetime.datetime(now.year, now.month, now.day)
-            tomorrow=today + datetime.timedelta(days=1)
-            now=now.isoformat()
-            today=today.isoformat() + 'Z'
-            tomorrow=tomorrow.isoformat() + 'Z'
+            now = datetime.datetime.now()  # .isoformat()  # + 'Z'  # 'Z' indicates UTC time
+            today = datetime.datetime(now.year, now.month, now.day)
+            tomorrow = today + datetime.timedelta(days=1)
+            now = now.isoformat()
+            today = today.isoformat() + 'Z'
+            tomorrow = tomorrow.isoformat() + 'Z'
 
-            events_result=service.events().list(calendarId=cal_key, timeMin=today,
-                                                maxResults=100, singleEvents=True,
-                                                orderBy='startTime').execute()
-            events=events_result.get('items', [])
+            events_result = service.events().list(calendarId=cal_key, timeMin=today,
+                                                  maxResults=100, singleEvents=True,
+                                                  orderBy='startTime').execute()
+            events = events_result.get('items', [])
 
             if not events:
                 return 'No upcoming events found.'
             return self.set_data(events, cal_key)
         else
-            return "No creds"
+        return "No creds"
 
 
 '''WAS WORKING LOCALLY WITH DESKTOP API KEY
@@ -120,19 +120,19 @@ class Gcalendar:
 
 
 def set_data(self, events, cal_key):
-    now=datetime.datetime.now()  # .isoformat()  # + 'Z'  # 'Z' indicates UTC time
-    today=datetime.datetime(now.year, now.month, now.day)
+    now = datetime.datetime.now()  # .isoformat()  # + 'Z'  # 'Z' indicates UTC time
+    today = datetime.datetime(now.year, now.month, now.day)
     for event in events:
-        start1=event['start'].get('dateTime', event['start'].get('date'))
+        start1 = event['start'].get('dateTime', event['start'].get('date'))
         if len(start1) == 10:
-            start1=start1 + 'T00:00:00'
-        start=datetime.datetime.strptime(start1[0:10], '%Y-%m-%d')
-        end1=event['end'].get('dateTime', event['end'].get('date'))
+            start1 = start1 + 'T00:00:00'
+        start = datetime.datetime.strptime(start1[0:10], '%Y-%m-%d')
+        end1 = event['end'].get('dateTime', event['end'].get('date'))
         if len(end1) == 10:
-            end1=end1 + 'T00:00:00'
-        end=datetime.datetime.strptime(end1[0:10], '%Y-%m-%d')
-        startdiff=start - today
-        enddiff=end - today
+            end1 = end1 + 'T00:00:00'
+        end = datetime.datetime.strptime(end1[0:10], '%Y-%m-%d')
+        startdiff = start - today
+        enddiff = end - today
 
         self.events.append(
             dict(
@@ -156,5 +156,5 @@ def set_data(self, events, cal_key):
 
 
 if __name__ == '__main__':
-    cal=Gcalendar()
+    cal = Gcalendar()
     print(cal.gcal_connect())
