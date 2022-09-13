@@ -65,8 +65,8 @@ class Gcalendar:
             if not events:
                 return 'No upcoming events found.'
             return self.set_data(events, cal_key)
-        else
-        return "No creds"
+        else:
+            return "No creds"
 
 
 '''WAS WORKING LOCALLY WITH DESKTOP API KEY
