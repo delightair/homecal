@@ -47,11 +47,10 @@ class Gcalendar:
             with open('token.pickle', 'rb') as token:
                 creds = pickle.load(token)
             print('## token.pickle found')
-            print('## creds :',creds)
+            print('## creds :', creds['token'])
         # If there are no (valid) credentials available, let the user log in.
         # if not creds or not creds.valid:
         #    creds.refresh(Request())
-
 
             service = build('calendar', 'v3', credentials=creds)
 
