@@ -53,7 +53,10 @@ class Gcalendar:
         #    creds.refresh(Request())
 
             service = build('calendar', 'v3', credentials=creds)
-
+            print('\n')
+            print('## done service = build :')
+            print('## service :', service)
+            print('\n')
             # Call the Calendar API
             now = datetime.datetime.now()  # .isoformat()  # + 'Z'  # 'Z' indicates UTC time
             today = datetime.datetime(now.year, now.month, now.day)
