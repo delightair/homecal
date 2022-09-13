@@ -1,7 +1,7 @@
 from __future__ import print_function
 from flask import render_template, redirect
 # specific calendar id
-#from keys import cal_key
+# from keys import cal_key
 import datetime
 import pickle
 import os.path
@@ -19,7 +19,7 @@ class Gcalendar:
         print('## client:', client)
         print('\n')
 
-    def gcal_connect(self, cal_key):
+    def gcal_connect(self, cal_key, creds):
         """Shows basic usage of the Google Calendar API.
         Prints the start and name of the next 2 events on the user's calendar.
         """
@@ -35,10 +35,11 @@ class Gcalendar:
             scopes=OAUTH_API_SCOPES
         )'''
 
-        creds = None
+        self.creds = creds
         # The file token.pickle stores the user's access and refresh tokens, and is
         # created automatically when the authorization flow completes for the first
         # time.
+        '''
         if os.path.exists('token.pickle'):
             with open('token.pickle', 'rb') as token:
                 creds = pickle.load(token)
@@ -53,18 +54,18 @@ class Gcalendar:
                         redirect_uri=callback_url)
                     redirect(oauth_consent_url)
                     print("oauth consent url is :", oauth_consent_url)
-                    #response = input("Press any key when authised")
+                    # response = input("Press any key when authised")
             return tuple()
 
 
-'''
+
                 flow = InstalledAppFlow.from_client_secrets_file(
                     'credentials.json', SCOPES)
                 creds = flow.run_local_server(port=0)
             # Save the credentials for the next run
             with open('token.pickle', 'wb') as token:
                 pickle.dump(creds, token)
-
+'''
         service = build('calendar', 'v3', credentials=creds)
 
         # Call the Calendar API
@@ -83,9 +84,12 @@ class Gcalendar:
         if not events:
             return 'No upcoming events found.'
         return self.set_data(events, cal_key)
+
+
 '''
 
 '''WAS WORKING LOCALLY WITH DESKTOP API KEY
+
     def gcal_connect(self, cal_key):
         """Shows basic usage of the Google Calendar API.
         Prints the start and name of the next 2 events on the user's calendar.
