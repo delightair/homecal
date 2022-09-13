@@ -86,8 +86,6 @@ class Gcalendar:
         return self.set_data(events, cal_key)
 
 
-'''
-
 '''WAS WORKING LOCALLY WITH DESKTOP API KEY
 
     def gcal_connect(self, cal_key):
