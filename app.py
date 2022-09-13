@@ -112,8 +112,23 @@ def google_calendar_callback():
     client.on_auth_callback(state, code)
     print('## Calling client.get_user_credentials from app.py google_calendar_callback')
     user_google_auth_credentials = client.get_user_credentials()
-    with open('token.pickle', 'wb') as token:
-        pickle.dump(user_google_auth_credentials, token)
+    # with open('token.pickle', 'wb') as token:
+    #    pickle.dump(user_google_auth_credentials, token)
+    creds = None
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file(
+            'token.json', OAUTH_API_SCOPES)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', OAUTH_API_SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
     print('User Google Auth Creds', user_google_auth_credentials)
     print('\n')
     #resp = make_response(render_template('auth_success.html'))
@@ -121,7 +136,7 @@ def google_calendar_callback():
 
     # Note: Storing creds in cookies for demonstration purpose only
     # You should keep it in some database
-    #resp.set_cookie('user_google_auth_credentials',
+    # resp.set_cookie('user_google_auth_credentials',
     #               json.dumps(user_google_auth_credentials))
     return True
 
