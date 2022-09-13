@@ -116,14 +116,14 @@ def google_calendar_callback():
         pickle.dump(user_google_auth_credentials, token)
     print('User Google Auth Creds', user_google_auth_credentials)
     print('\n')
-    resp = make_response(render_template('auth_success.html'))
-    resp.set_cookie('is_calendar_connected', 'true')
+    #resp = make_response(render_template('auth_success.html'))
+    #resp.set_cookie('is_calendar_connected', 'true')
 
     # Note: Storing creds in cookies for demonstration purpose only
     # You should keep it in some database
-    resp.set_cookie('user_google_auth_credentials',
+    #resp.set_cookie('user_google_auth_credentials',
                     json.dumps(user_google_auth_credentials))
-    return resp
+    return True
 
 
 if __name__ == '__main__':
