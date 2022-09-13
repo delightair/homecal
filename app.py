@@ -4,6 +4,7 @@ from gcalendar import Gcalendar
 from weather import Weather
 from datetime import date
 from oauth import Oauth
+import pickle
 
 
 OAUTH_API_SCOPES = [
