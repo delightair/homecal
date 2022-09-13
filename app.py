@@ -122,7 +122,7 @@ def google_calendar_callback():
     # Note: Storing creds in cookies for demonstration purpose only
     # You should keep it in some database
     #resp.set_cookie('user_google_auth_credentials',
-                    json.dumps(user_google_auth_credentials))
+    #               json.dumps(user_google_auth_credentials))
     return True
 
 
