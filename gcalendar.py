@@ -46,7 +46,7 @@ class Gcalendar:
         # if not creds or not creds.valid:
         #    creds.refresh(Request())
 
-        if creds != None:
+
             service = build('calendar', 'v3', credentials=creds)
 
             # Call the Calendar API
