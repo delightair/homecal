@@ -36,7 +36,7 @@ get_events2 = tuple()
 print(f'### get_events intial len = {len(get_events)}')
 for cal_key_item in cal_key:
     get_events1 = my_cal.gcal_connect(
-        cal_key_item, client.get_user_credentials())
+        cal_key_item, creds)
     # if type(get_events1) != type('str'):
     #    get_events2 = get_events2 + get_events1
     get_events1 = tuple()
@@ -111,6 +111,7 @@ def google_calendar_callback():
     client.on_auth_callback(state, code)
     print('## Calling client.get_user_credentials from app.py google_calendar_callback')
     user_google_auth_credentials = client.get_user_credentials()
+    creds = user_google_auth_credentials
     print('User Google Auth Creds', user_google_auth_credentials)
     print('\n')
     resp = make_response(render_template('auth_success.html'))
