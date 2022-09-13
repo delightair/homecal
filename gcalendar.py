@@ -40,7 +40,7 @@ class Gcalendar:
         # created automatically when the authorization flow completes for the first
         # time.
         print('\n')
-        print('# in gcalendar.py gcal_connect)
+        print('# in gcalendar.py gcal_connect')
         print('## about to check for token.pickle file')
         print('\n')
         if os.path.exists('token.pickle'):
